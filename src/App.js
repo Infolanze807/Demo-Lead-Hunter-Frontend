@@ -21,6 +21,7 @@ import Payment from './Components/Payment/Payment';
 import Terms from './Components/Terms';
 import ResetError from './Components/Login/ResetError';
 import PrivacyPolicy from './Components/PrivacyPolicy';
+import Return from './Components/Return';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function AppContent() {
         <Route path='/pay-success/:transaction_id' element={<Payment />}  />
         <Route path='/terms-and-conditions' element={<Terms />} />
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+        <Route path='/return-policy' element={<Return />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/reset-error' element={<ResetError />} />
         <Route path='/admin' element={<Admin />} />

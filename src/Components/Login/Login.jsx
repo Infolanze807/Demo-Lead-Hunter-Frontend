@@ -8,9 +8,6 @@ import { RiLoginBoxLine } from "react-icons/ri";
 import { SiGnuprivacyguard } from "react-icons/si";
 import axios from "axios";
 import { IoClose } from "react-icons/io5";
-import file from "../../Images/file.png";
-import { IoMdCheckboxOutline } from "react-icons/io";
-
 
 function LoginDemo({ role }) {
   const navigate = useNavigate();
@@ -40,9 +37,6 @@ function LoginDemo({ role }) {
   const [paymentStatusError, setPaymentStatusError] = useState(false);
   const [termsChecked, setTermsChecked] = useState(false);
   const [isPaymentLoading, setIsPaymentLoading] = useState(false);
-
-  const [showSecondPopup, setShowSecondPopup] = useState(false);
-  const [showThirdPopup, setShowThirdPopup] = useState(false);
 
   const handleLoginInputChange = (e) => {
     const { name, value } = e.target;
@@ -465,9 +459,8 @@ function LoginDemo({ role }) {
                         </div>
                         <div className="grid grid-cols-2 max-w-xl mx-auto gap-3">
                           <div className="border text-center lg:p-7 p-5 rounded shadow-md bg-[--main-color]">
-                            <div onClick={() => setShowSecondPopup(true)} className="lg:text-3xl text-2xl font-semibold hover:cursor-pointer hover:text-[--three-color]">
+                            <div className="lg:text-3xl text-2xl font-semibold">
                               99<sub>/Month</sub>
-                              
                             </div>
                             <div className="pt-2">
                               <input
@@ -477,9 +470,8 @@ function LoginDemo({ role }) {
                               />
                             </div>
                           </div>
-                          
                           <div className="border lg:p-7 p-5 text-center rounded shadow-md bg-[--main-color]">
-                            <div  onClick={() => setShowThirdPopup(true)} className="lg:text-3xl text-2xl font-semibold hover:cursor-pointer hover:text-[--three-color]">
+                            <div className="lg:text-3xl text-2xl font-semibold">
                               999<sub>/Year</sub>
                             </div>
                             <div className="pt-2">
@@ -525,104 +517,6 @@ function LoginDemo({ role }) {
                     </div>
                   )}
                 </form>
-                {showSecondPopup && (
-                  <div className="popup fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50 p-5 z-50">
-                      <div className="bg-white max-w-5xl">
-                          <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1">
-                            <div className="bg-[--second-color] lg:block md:block hidden"><img className="mx-auto" src={file} alt="file" /></div>
-                            <div className="">
-                              <div className="flex justify-between border-b p-2">
-                                <div className="uppercase">Lead Hunter</div>
-                                <button className=" text-gray-600 hover:text-[--three-color]" onClick={() => setShowSecondPopup(false)}>
-                                  <IoClose className="text-xl" />
-                                </button>
-                              </div>
-                              <div className="p-7">
-                              <div className="text-center text-2xl font-semibold uppercase text-[--three-color] pb-2 pt-4">Membership Price</div>
-                              <div className="text-sm text-center lg:px-6  opacity-80">We work for you. So we don’t take a percentage of your client fees. You just make one simple and affordable payment.</div>
-                              <div className="text-4xl text-center pt-5 font-semibold">99 <sub>/ Month</sub></div>
-                              <div>
-                              <div className="mt-10 flex items-center gap-x-4 px-4">
-                                <h4 className="flex-none text-sm font-semibold leading-6 text-[--three-color]">What’s included</h4>
-                                <div className="h-px flex-auto bg-gray-100" />
-                              </div>
-                              <ul className="px-4 pt-2">
-                                <li className="flex gap-x-3 text-sm pb-1">
-                                  <IoMdCheckboxOutline className=" text-[--three-color] h-5 w-4 flex-none" aria-hidden="true" />
-                                  Leads added daily
-                                </li>
-                                <li className="flex gap-x-3 text-sm pb-1">
-                                  <IoMdCheckboxOutline className=" text-[--three-color] h-5 w-4 flex-none" aria-hidden="true" />
-                                  Search, filter & track leads
-                                </li>
-                                <li className="flex gap-x-3 text-sm pb-1">
-                                  <IoMdCheckboxOutline className=" text-[--three-color] h-5 w-4 flex-none" aria-hidden="true" />
-                                  Exclusive growth only leads
-                                </li>
-                                <li className="flex gap-x-3 text-sm">
-                                  <IoMdCheckboxOutline className=" text-[--three-color] h-5 w-4 flex-none" aria-hidden="true" />
-                                  Up to date reports and reporting
-                                </li>
-                              </ul>
-                              </div>
-                              <div className="text-center pt-7">
-                                <button className="uppercase border-2 border-[--three-color] p-2 px-6 text-sm text-white bg-[--three-color] hover:text-[--three-color] hover:bg-white" >Let's Go</button>
-                              </div>
-                            </div>
-                          </div>
-                          </div>
-                      </div>
-                  </div>
-                )}
-                {showThirdPopup && (
-                  <div className="popup fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50 p-5 z-50">
-                      <div className="bg-white max-w-5xl">
-                          <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1">
-                            <div className="bg-[--second-color] lg:block md:block hidden"><img className="mx-auto" src={file} alt="file" /></div>
-                            <div className="">
-                              <div className="flex justify-between border-b p-2">
-                                <div className="uppercase">Lead Hunter</div>
-                                <button className=" text-gray-600 hover:text-[--three-color]" onClick={() => setShowThirdPopup(false)}>
-                                  <IoClose className="text-xl" />
-                                </button>
-                              </div>
-                              <div className="p-7">
-                              <div className="text-center text-2xl font-semibold uppercase text-[--three-color] pb-2 pt-4">Membership Price</div>
-                              <div className="text-sm text-center lg:px-6  opacity-80">We work for you. So we don’t take a percentage of your client fees. You just make one simple and affordable payment.</div>
-                              <div className="text-4xl text-center pt-5 font-semibold">999 <sub>/ Year</sub></div>
-                              <div>
-                              <div className="mt-10 flex items-center gap-x-4 px-4">
-                                <h4 className="flex-none text-sm font-semibold leading-6 text-[--three-color]">What’s included</h4>
-                                <div className="h-px flex-auto bg-gray-100" />
-                              </div>
-                              <ul className="px-4 pt-2">
-                                <li className="flex gap-x-3 text-sm pb-1">
-                                  <IoMdCheckboxOutline className=" text-[--three-color] h-5 w-4 flex-none" aria-hidden="true" />
-                                  Leads added daily
-                                </li>
-                                <li className="flex gap-x-3 text-sm pb-1">
-                                  <IoMdCheckboxOutline className=" text-[--three-color] h-5 w-4 flex-none" aria-hidden="true" />
-                                  Search, filter & track leads
-                                </li>
-                                <li className="flex gap-x-3 text-sm pb-1">
-                                  <IoMdCheckboxOutline className=" text-[--three-color] h-5 w-4 flex-none" aria-hidden="true" />
-                                  Exclusive growth only leads
-                                </li>
-                                <li className="flex gap-x-3 text-sm">
-                                  <IoMdCheckboxOutline className=" text-[--three-color] h-5 w-4 flex-none" aria-hidden="true" />
-                                  Up to date reports and reporting
-                                </li>
-                              </ul>
-                              </div>
-                              <div className="text-center pt-7">
-                                <button className="uppercase border-2 border-[--three-color] p-2 px-6 text-sm text-white bg-[--three-color] hover:text-[--three-color] hover:bg-white" >Let's Go</button>
-                              </div>
-                            </div>
-                          </div>
-                          </div>
-                      </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>

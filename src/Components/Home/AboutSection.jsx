@@ -34,6 +34,7 @@ function AboutSection() {
               <div className="h-px flex-auto bg-gray-100" />
             </div>
             <ul
+            //   role="list"
               className="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6"
             >
               {includedFeatures.map((feature) => (
