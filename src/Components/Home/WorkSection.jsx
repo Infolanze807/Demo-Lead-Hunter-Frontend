@@ -27,6 +27,9 @@ function WorkSection() {
                 <div className='text-lg'>Start getting in touch with qualified business owners through verified email and social profiles to start closing more deals.</div>
             </div>
         </div>
+        <div className='pt-10'>
+<div className="elfsight-app-1246d0e7-b89b-4cbd-b346-d36a9ce07560 h-[500px] w-full" data-elfsight-app-lazy></div>
+        </div>
     </div>
   )
 }
