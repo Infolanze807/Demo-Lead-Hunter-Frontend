@@ -76,6 +76,8 @@ function ServiceSection() {
               </div>
             </div>
         </div>
+        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<div class="elfsight-app-1246d0e7-b89b-4cbd-b346-d36a9ce07560" data-elfsight-app-lazy></div>
     </div>
   )
 }
