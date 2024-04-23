@@ -90,7 +90,7 @@ function LoginDemo({ role }) {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/payment`,
+        `${process.env.REACT_APP_API_URL}/api/auth/login`,
         {
           email: loginEmail,
           password: loginPassword,
@@ -202,7 +202,7 @@ function LoginDemo({ role }) {
       }
   
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/register`,
+        `${process.env.REACT_APP_API_URL}/api/phonepe/payment`,
         {
           name,
           email,
@@ -219,9 +219,9 @@ function LoginDemo({ role }) {
         // Handle successful signup
         console.log("Signup successful", response.data);
         notifySuccess("Signup successful");
-        // window.location.href = response.data;
+        window.location.href = response.data;
         // navigate("/register");
-        window.location.href = "/register";
+        // window.location.href = "/register";
       }
       setIsPaymentLoading(false);
     } catch (error) {
