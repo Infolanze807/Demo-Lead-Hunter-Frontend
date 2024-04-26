@@ -22,6 +22,7 @@ import Terms from './Components/Terms';
 import ResetError from './Components/Login/ResetError';
 import PrivacyPolicy from './Components/PrivacyPolicy';
 import Return from './Components/Return';
+import Remote from './Components/Dashboard/Remote';
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
 function AppContent() {
 
   const location = useLocation();
-  const isDashboardPage = location.pathname === '/dashboard' || location.pathname === "/admin" ;
+  const isDashboardPage = location.pathname === '/dashboard' || location.pathname === "/admin" || location.pathname === "/remote-job" ;
   
   return (
     <div>
@@ -56,6 +57,7 @@ function AppContent() {
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
         <Route path='/return-policy' element={<Return />} />
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/remote-job' element={<Remote />} />
         <Route path='/reset-error' element={<ResetError />} />
         <Route path='/admin' element={<Admin />} />
         <Route path='/api/passwordReset/:userId/:token' element={<ResetPassword />} />

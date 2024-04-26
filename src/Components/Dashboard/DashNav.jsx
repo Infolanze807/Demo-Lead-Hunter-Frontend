@@ -113,6 +113,23 @@
                 </NavLink>
                 </li>
                  )}
+                 {role !== "Admin" && (
+                <li className="text-gray-400">
+                <NavLink
+                  to="/remote-job"
+                  id="3"
+                  activeclassname="active"
+                  onClick={(e) => handleNavSelected(e)}
+                  className={
+                    isActive === "3"
+                      ? "active mr-5  hover:text-black  cursor-pointer "
+                      : "mr-5  hover:text-black  cursor-pointer "
+                  }
+                >
+                  Remote Jobs
+                </NavLink>
+                </li>
+                 )}
               </ul>
             </div>
           </div>
