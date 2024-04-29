@@ -25,7 +25,7 @@ function RemoteLeads() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/remoteleads/remote`
+          `${process.env.REACT_APP_API_URL}/api/remoteleads/remotelead`
         );
         setremoteLeads(response.data);
       } catch (error) {
@@ -248,7 +248,7 @@ function RemoteLeads() {
               </button>
             </form>
           </div>
-          <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 mt-7 lg:gap-5 md:gap-5 gap-2 lg:px-28">
+          {/* <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 mt-7 lg:gap-5 md:gap-5 gap-2 lg:px-28">
             <button
               value="Web"
               onClick={() => fetchRemoteLeadsByTechnology("Web")}
@@ -282,7 +282,7 @@ function RemoteLeads() {
             >
               {appLoading ? "Serching..." : "App Development"}
             </button>
-          </div>
+          </div> */}
         </div>
         {currentRemoteLeads.map((lead, index) => (
           <div
