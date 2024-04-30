@@ -42,7 +42,7 @@
         <nav className="bg-white w-full shadow-lg lg:px-20 md:px-7 px-4 font-family border-b ">
           <div className=" flex flex-wrap items-center justify-between mx-auto">
             <div className="z-40">
-            <img className="w-44 lg:w-48 md:w-44 z-40 " src={Logo} alt="nishant" />
+            <img className="w-36 lg:w-48 md:w-36 z-40 " src={Logo} alt="nishant" />
             </div>
             <div className="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
             <NavLink 
@@ -51,7 +51,7 @@
               id="0"
               // onClick={(e) => handleNavSelected(e)}
               onClick={(e) => handleLogout()}
-              className={`lg:px-8 md:px-8 px-6 z-40 hover:bg-[--three-color] bg-white text-[--three-color] outline outline-2 hover:text-white outline-[--three-color] font-medium rounded-md text-sm py-2 text-center ${
+              className={`hidden lg:block lg:px-8 md:px-8 px-6 z-40 hover:bg-[--three-color] bg-white text-[--three-color] outline outline-2 hover:text-white outline-[--three-color] font-medium rounded-md text-sm py-2 text-center ${
                 isActive === "0" ? "active hover:text-white cursor-pointer" : "hover:text-white cursor-pointer"
               }`}
             >
@@ -67,18 +67,18 @@
                 <span className="sr-only">Open main menu</span>
                 <div
                   onClick={() => setIsOpen(!isOpen)}
-                  className="lg:hidden absolute md:right-8 right-6 top-7 cursor-pointer h-fit z-40"
+                  className="lg:hidden absolute   cursor-pointer h-fit z-40"
                 >
                   {isOpen ? <FaBars className="text-2xl" /> : <AiOutlineClose className="text-2xl" />}
                 </div>
               </button>
             </div>
             <div
-              className={`nav-menu lg:flex lg:pb-0 lg:py-0 md:py-7 py-7 lg:items-center text-base absolute  lg:static lg:z-auto z-30 right-0 w-full lg:w-auto md:pl-0 transition-all duration-500 ease-in 
-            ${isOpen ? "top-[-200px]" : "top-[29px]"}` }
+              className={`z-[-1] lg:-z-0 nav-menu lg:flex lg:pb-0 lg:py-0 md:py-7 py-7 lg:items-center text-base absolute  lg:static right-0 w-full lg:w-auto md:pl-0 transition-all duration-500 ease-in 
+            ${isOpen ? " top-[-200px]" : "top-[20px]"}` }
               id="navbar-sticky"
             >
-              <ul className="flex flex-col nav-menu p-4 lg::p-0 mt-4 lg:mb-0 md:mb-4 mb-4 font-medium rounded-lg lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <ul className="gap-4 z-[-1] flex flex-col nav-menu p-4 lg::p-0 mt-4 lg:mb-0 md:mb-4 mb-4 font-medium rounded-lg lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               {role === "Admin" && (
                 <li className="text-gray-400">
                 <NavLink
@@ -89,7 +89,7 @@
                   className={
                     isActive === "1"
                       ? "active mr-5  hover:text-black  cursor-pointer "
-                      : "mr-5  hover:text-black  cursor-pointer "
+                      : "mr-5  hover:text-black  cursor-pointer"
                   }
                 >
                 Admin Panel
@@ -109,7 +109,7 @@
                       : "mr-5  hover:text-black  cursor-pointer "
                   }
                 >
-                  Dashboard
+                 FreeLancing Jobs
                 </NavLink>
                 </li>
                  )}
@@ -130,6 +130,33 @@
                 </NavLink>
                 </li>
                  )}
+                 <li className="text-gray-400 lg:hidden block">
+                 <NavLink
+                  to="/"
+                  id="4"
+                  activeclassname="active"
+                  onClick={(e) => handleLogout(e)}
+                  className={
+                    isActive === "4"
+                      ? " active mr-5  hover:text-black  cursor-pointer "
+                      : "mr-5  hover:text-black  cursor-pointer "
+                  }
+                >
+                  Logout
+                </NavLink>
+                </li>
+            {/* <NavLink 
+              // to="/" 
+              activeclassname="active"
+              id="0"
+              // onClick={(e) => handleNavSelected(e)}
+              onClick={(e) => handleLogout()}
+              className={`lg:hidden block w-4/12 text-center${
+                isActive === "0" ? "active hover:text-white cursor-pointer" : "hover:text-white cursor-pointer"
+              }`}
+            >
+              LogOut
+            </NavLink> */}
               </ul>
             </div>
           </div>

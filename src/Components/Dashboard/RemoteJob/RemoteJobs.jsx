@@ -46,8 +46,8 @@ function RemoteLeads() {
   };
 
   const redirectToLink = () => {
-    if (leadDetails && leadDetails.link) {
-      window.open(leadDetails.link, "_blank");
+    if (leadDetails && leadDetails.Link) {
+      window.open(leadDetails.Link, "_blank");
     }
   };
 
@@ -65,7 +65,7 @@ function RemoteLeads() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/Remoteleads/tag`,
+        `${process.env.REACT_APP_API_URL}/api/remoteleads/remoteleadstag`,
         {
           params: {
             tags: searchTerm,
@@ -81,63 +81,63 @@ function RemoteLeads() {
     }
   };
 
-  const fetchRemoteLeadsByTechnology = async (tag) => {
-    setCurrentPage(1);
-    setSearchTerm("");
-    try {
-      // Set loading state for the clicked button
-      switch (tag) {
-        case "Web":
-          setWebLoading(true);
-          setBlockchainLoading(false); // Reset other loading states
-          setAppLoading(false); // Reset other loading states
-          setIsActive("Web");
-          break;
-        case "Blockchain":
-          setWebLoading(false); // Reset other loading states
-          setBlockchainLoading(true);
-          setAppLoading(false); // Reset other loading states
-          setIsActive("Blockchain");
-          break;
-        case "App":
-          setWebLoading(false); // Reset other loading states
-          setBlockchainLoading(false); // Reset other loading states
-          setAppLoading(true);
-          setIsActive("App");
-          break;
-        default:
-          break;
-      }
+  // const fetchRemoteLeadsByTechnology = async (tag) => {
+  //   setCurrentPage(1);
+  //   setSearchTerm("");
+  //   try {
+  //     // Set loading state for the clicked button
+  //     switch (tag) {
+  //       case "Web":
+  //         setWebLoading(true);
+  //         setBlockchainLoading(false); // Reset other loading states
+  //         setAppLoading(false); // Reset other loading states
+  //         setIsActive("Web");
+  //         break;
+  //       case "Blockchain":
+  //         setWebLoading(false); // Reset other loading states
+  //         setBlockchainLoading(true);
+  //         setAppLoading(false); // Reset other loading states
+  //         setIsActive("Blockchain");
+  //         break;
+  //       case "App":
+  //         setWebLoading(false); // Reset other loading states
+  //         setBlockchainLoading(false); // Reset other loading states
+  //         setAppLoading(true);
+  //         setIsActive("App");
+  //         break;
+  //       default:
+  //         break;
+  //     }
 
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/remoteleads/technology`,
-        {
-          params: {
-            Technology: tag,
-          },
-        }
-      );
-      setremoteLeads(response.data);
-      console.log("data", response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      // Reset loading state after API call is complete
-      switch (tag) {
-        case "Web":
-          setWebLoading(false);
-          break;
-        case "Blockchain":
-          setBlockchainLoading(false);
-          break;
-        case "App":
-          setAppLoading(false);
-          break;
-        default:
-          break;
-      }
-    }
-  };
+  //     const response = await axios.get(
+  //       `${process.env.REACT_APP_API_URL}/api/remoteleads/technology`,
+  //       {
+  //         params: {
+  //           Technology: tag,
+  //         },
+  //       }
+  //     );
+  //     setremoteLeads(response.data);
+  //     console.log("data", response.data);
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   } finally {
+  //     // Reset loading state after API call is complete
+  //     switch (tag) {
+  //       case "Web":
+  //         setWebLoading(false);
+  //         break;
+  //       case "Blockchain":
+  //         setBlockchainLoading(false);
+  //         break;
+  //       case "App":
+  //         setAppLoading(false);
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   }
+  // };
 
   const clearSearchFilter = async () => {
     setIsActive("");
@@ -145,7 +145,7 @@ function RemoteLeads() {
     setLoadingClose(true);
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/remoteleads`
+        `${process.env.REACT_APP_API_URL}/api/remoteleads/remotelead`
       );
       setremoteLeads(response.data);
       setCurrentPage(1);
