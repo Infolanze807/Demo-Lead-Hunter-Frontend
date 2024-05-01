@@ -455,7 +455,7 @@ function RemoteLeads() {
                     <div className="lg:pt-1">
                       {/* <div>Budget: {leadDetails.project_budget}</div>
                   <div>Hourly Rate: {leadDetails.Hourly_Rate_budget}</div> */}
-                      {leadDetails.Project_budget && (
+                      {leadDetails.Project_Budget && (
                         <div className="text-nowrap">
                           Budget: {leadDetails.Project_Budget}
                         </div>

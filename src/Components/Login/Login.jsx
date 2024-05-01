@@ -211,19 +211,20 @@ function LoginDemo({ role }) {
           amount,
         }
       );
+      console.log(response)
   
       // Check if response contains existence flag
-      if (response.data.exist) {
-        alert(response.data.exist); // Alert user about existence
-      } else {
-        // Handle successful signup
-        console.log("Signup successful", response.data);
-        notifySuccess("Signup successful");
-        window.location.href = response.data;
-        // navigate("/register");
-        // window.location.href = "/register";
-      }
-      setIsPaymentLoading(false);
+      // if (response.data.exist) {
+      //   alert(response.data.exist); // Alert user about existence
+      // } else {
+      //   // Handle successful signup
+      //   console.log("Signup successful", response.data);
+      //   notifySuccess("Signup successful");
+      //   window.location.href = response.data;
+      //   // navigate("/register");
+      //   // window.location.href = "/register";
+      // }
+      // setIsPaymentLoading(false);
     } catch (error) {
       console.error("Signup failed", error);
       notifyError("Signup failed");
@@ -258,7 +259,7 @@ function LoginDemo({ role }) {
                   Welcome to the Lead Hunter
                 </div>
                 <div className="text-sm font-semibold text-gray-600 pt-3">
-                  Login / Registration
+                  Log in / Registration
                 </div>
               </div>
             </div>
