@@ -214,17 +214,18 @@ function LoginDemo({ role }) {
       console.log(response)
   
       // Check if response contains existence flag
-      // if (response.data.exist) {
-      //   alert(response.data.exist); // Alert user about existence
-      // } else {
-      //   // Handle successful signup
-      //   console.log("Signup successful", response.data);
-      //   notifySuccess("Signup successful");
-      //   window.location.href = response.data;
-      //   // navigate("/register");
-      //   // window.location.href = "/register";
-      // }
-      // setIsPaymentLoading(false);
+      if (response.data.status === false) {
+        alert(response.data.msg);
+        console.log("mesagsdgfyugf", response.data.status)
+      } else if (response.data.status === true) {
+        // Handle successful signup
+        console.log("Signup successful", response.data);
+        notifySuccess("Signup successful");
+        window.location.href = response.data.url;
+        // navigate("/register");
+        // window.location.href = "/register";
+      }
+      setIsPaymentLoading(false);
     } catch (error) {
       console.error("Signup failed", error);
       notifyError("Signup failed");
