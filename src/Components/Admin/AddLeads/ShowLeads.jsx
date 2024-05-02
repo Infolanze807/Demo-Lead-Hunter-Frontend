@@ -9,7 +9,29 @@ function ShowLeads() {
   const [showRemoteUpdateForm, setShowRemoteUpdateForm] = useState(false);
   const [selectedLeadId, setSelectedLeadId] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
-  const [formData, setFormData] = useState({});
+
+  const [freelanceFormData, setFreelanceFormData] = useState({
+    title: '',
+    description: '',
+    tags: '',
+    timestamp: '',
+    level: '',
+    duration: '',
+    project_budget: '',
+    link: ''
+  });
+  
+  const [remoteFormData, setRemoteFormData] = useState({
+    Title: '',
+    Description: '',
+    Tags: '',
+    timestamp: '',
+    Level: '',
+    Duration: '',
+    Project_Budget: '',
+    Link: ''
+  });
+  
 
   useEffect(() => {
     fetchData('freelance');
@@ -43,9 +65,9 @@ function ShowLeads() {
     try {
       let apiUrl = '';
       if (type === 'freelance') {
-        apiUrl = `${process.env.REACT_APP_API_URL}/api/leads`;
+        apiUrl = `${process.env.REACT_APP_API_URL}/api/leads/lead`;
       } else if (type === 'remote') {
-        apiUrl = `${process.env.REACT_APP_API_URL}/api/remoteleads/remotelead`;
+        apiUrl = `${process.env.REACT_APP_API_URL}/api/remoteleads/remote`;
       }
       const response = await fetch(`${apiUrl}/${_id}`, {
         method: 'DELETE',
@@ -67,9 +89,9 @@ function ShowLeads() {
     try {
       let apiUrl = '';
       if (type === 'freelance') {
-        apiUrl = `${process.env.REACT_APP_API_URL}/api/leads`;
+        apiUrl = `${process.env.REACT_APP_API_URL}/api/leads/lead`;
       } else if (type === 'remote') {
-        apiUrl = `${process.env.REACT_APP_API_URL}/api/remoteleads/remotelead`;
+        apiUrl = `${process.env.REACT_APP_API_URL}/api/remoteleads/remote`;
       }
       const response = await fetch(`${apiUrl}/${_id}`, {
         method: 'PUT',
@@ -95,32 +117,39 @@ function ShowLeads() {
     fetchLeadData(_id, type); // Fetch existing data into the form
   };
   
-  
-  
   const fetchLeadData = async (_id, type) => {
     try {
       let apiUrl = '';
       if (type === 'freelance') {
-        apiUrl = `${process.env.REACT_APP_API_URL}/api/leads/${_id}`;
+        apiUrl = `${process.env.REACT_APP_API_URL}/api/leads/lead/${_id}`;
       } else if (type === 'remote') {
-        apiUrl = `${process.env.REACT_APP_API_URL}/api/remoteleads/remotelead/${_id}`;
+        apiUrl = `${process.env.REACT_APP_API_URL}/api/remoteleads/remote/${_id}`;
       }
-      const response = await fetch(apiUrl);
+      const response = await fetch(apiUrl, {
+        method: 'GET', // Specify the method as GET
+      });
       if (!response.ok) {
         throw new Error('Failed to fetch lead data');
       }
       const data = await response.json();
       // Set the form data based on the fetched data
-      setFormData(data);
+      if (type === 'freelance') {
+        setFreelanceFormData(data);
+      } else if (type === 'remote') {
+        setRemoteFormData(data);
+      }
     } catch (error) {
       console.error('Error fetching lead data:', error.message);
     }
   };
-  
-
+    
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
+    setFreelanceFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+    setRemoteFormData(prevData => ({
       ...prevData,
       [name]: value
     }));
@@ -131,22 +160,23 @@ function ShowLeads() {
     try {
       let apiUrl = '';
       if (selectedType === 'freelance') {
-        apiUrl = `${process.env.REACT_APP_API_URL}/api/leads/${selectedLeadId}`;
+        apiUrl = `${process.env.REACT_APP_API_URL}/api/leads/lead/${selectedLeadId}`;
       } else if (selectedType === 'remote') {
-        apiUrl = `${process.env.REACT_APP_API_URL}/api/remoteleads/remotelead/${selectedLeadId}`;
+        apiUrl = `${process.env.REACT_APP_API_URL}/api/remoteleads/remote/${selectedLeadId}`;
       }
       const response = await fetch(apiUrl, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(freelanceFormData,remoteFormData)
       });
       if (!response.ok) {
         throw new Error('Failed to update lead');
       }
       // Reset form data and hide update form
-      setFormData({});
+      setFreelanceFormData({});
+      setRemoteFormData({});
       setShowFreelanceUpdateForm(false);
       setShowRemoteUpdateForm(false);
       // Refetch data after update to reflect changes
@@ -215,29 +245,29 @@ function ShowLeads() {
       </div>
       {/* Freelance Update Form Modal */}
       {showFreelanceUpdateForm && (
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-8 rounded-lg">
-            {/* Render input fields for updating freelance lead */}
-            <form onSubmit={handleSubmit} className='w-[250px] md:w-[320px] lg:w-[450px] grid gap-2 relative'>
-              <button className='text-black'><CgCloseR className='right-[-15px] top-[-20px] absolute text-2xl text-[--three-color]' onClick={() => setShowFreelanceUpdateForm(false)} /></button>
-              <input type="text" name="title" placeholder="Title" value={formData.title || ''} onChange={handleChange} className='rounded-xl' />
-              {/* Add other input fields as needed */}
-              <input type="text" name="description" placeholder="Description" value={formData.description || ''} onChange={handleChange} className='rounded-xl' />
-              <input type="text" name="tags" placeholder="Tags" value={formData.tags || ''} onChange={handleChange} className='rounded-xl' />
-              <input type="text" name="timestamp" placeholder="Timestamp" value={formData.timestamp || ''} onChange={handleChange} className='rounded-xl' />
-              <input type="text" name="level" placeholder="Level" value={formData.level || ''} onChange={handleChange}className='rounded-xl' />
-              <input type="text" name="duration" placeholder="Duration" value={formData.duration || ''} onChange={handleChange} className='rounded-xl' />
-              <input type="text" name="project_budget" placeholder="Project Budget" value={formData.project_budget || ''} onChange={handleChange}className='rounded-xl' />
-              <input type="text" name="link" placeholder="Link" value={formData.link || ''} onChange={handleChange} className='rounded-xl' />
-              <button type="submit" className='rounded-xl w-full bg-[--three-color] text-white p-2' onClick={handleSubmit}>Update</button>
-              <button type="button" className='rounded-xl w-full bg-[--three-color] text-white p-2' onClick={() => {
-                setShowFreelanceUpdateForm(false);
-                setFormData({}); // Reset form data
-              }}>Reset</button>
-            </form>
-          </div>
-        </div>
-      )}
+  <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center">
+    <div className="bg-white p-8 rounded-lg">
+      {/* Render input fields for updating freelance lead */}
+      <form onSubmit={handleSubmit} className='w-[250px] md:w-[320px] lg:w-[450px] grid gap-2 relative'>
+        <button className='text-black'><CgCloseR className='right-[-15px] top-[-20px] absolute text-2xl text-[--three-color]' onClick={() => setShowFreelanceUpdateForm(false)} /></button>
+        <input type="text" name="title" placeholder="Title" value={freelanceFormData.title} onChange={handleChange} className='rounded-xl' />
+        {/* Add other input fields as needed */}
+        <input type="text" name="description" placeholder="Description" value={freelanceFormData.description} onChange={handleChange} className='rounded-xl' />
+        <input type="text" name="tags" placeholder="Tags" value={freelanceFormData.tags} onChange={handleChange} className='rounded-xl' />
+        <input type="text" name="timestamp" placeholder="Timestamp" value={freelanceFormData.timestamp} onChange={handleChange} className='rounded-xl' />
+        <input type="text" name="level" placeholder="Level" value={freelanceFormData.level} onChange={handleChange}className='rounded-xl' />
+        <input type="text" name="duration" placeholder="Duration" value={freelanceFormData.duration} onChange={handleChange} className='rounded-xl' />
+        <input type="text" name="project_budget" placeholder="Project Budget" value={freelanceFormData.project_budget} onChange={handleChange}className='rounded-xl' />
+        <input type="text" name="link" placeholder="Link" value={freelanceFormData.link} onChange={handleChange} className='rounded-xl' />
+        <button type="submit" className='rounded-xl w-full bg-[--three-color] text-white p-2'onClick={handleSubmit}>Update</button>
+        <button type="button" className='rounded-xl w-full bg-[--three-color] text-white p-2' onClick={() => {
+          setShowFreelanceUpdateForm(false);
+          setFreelanceFormData({}); // Reset form data
+        }}>Reset</button>
+      </form>
+    </div>
+  </div>
+)}
 
       {/* Remote Update Form Modal */}
       {showRemoteUpdateForm && (
@@ -246,18 +276,18 @@ function ShowLeads() {
             {/* Render input fields for updating remote lead */}
             <form onSubmit={handleSubmit} className='w-[250px] md:w-[320px] lg:w-[450px] grid gap-2 relative'>
               <button className='text-black'><CgCloseR className='right-[-15px] top-[-20px] absolute text-2xl text-[--three-color]' onClick={() => setShowRemoteUpdateForm(false)} /></button>
-              <input type="text" name="Title" placeholder="Title" value={formData.Title || ''} onChange={handleChange} className='rounded-xl' />
-              <input type="text" name="Description" placeholder="Description" value={formData.Description || ''} onChange={handleChange} className='rounded-xl' />
-              <input type="text" name="Tags" placeholder="Tags" value={formData.Tags || ''} onChange={handleChange} className='rounded-xl' />
-              <input type="text" name="timestamp" placeholder="Timestamp" value={formData.timestamp || ''} onChange={handleChange} className='rounded-xl' />
-              <input type="text" name="Level" placeholder="Level" value={formData.Level || ''} onChange={handleChange}className='rounded-xl' />
-              <input type="text" name="Duration" placeholder="Duration" value={formData.Duration || ''} onChange={handleChange} className='rounded-xl' />
-              <input type="text" name="Project_Budget" placeholder="Project Budget" value={formData.Project_Budget || ''} onChange={handleChange}className='rounded-xl' />
-              <input type="text" name="Link" placeholder="Link" value={formData.Link || ''} onChange={handleChange} className='rounded-xl' />
+              <input type="text" name="Title" placeholder="Title" value={remoteFormData.Title} onChange={handleChange} className='rounded-xl' />
+              <input type="text" name="Description" placeholder="Description" value={remoteFormData.Description} onChange={handleChange} className='rounded-xl' />
+              <input type="text" name="Tags" placeholder="Tags" value={remoteFormData.Tags} onChange={handleChange} className='rounded-xl' />
+              <input type="text" name="timestamp" placeholder="Timestamp" value={remoteFormData.timestamp} onChange={handleChange} className='rounded-xl' />
+              <input type="text" name="Level" placeholder="Level" value={remoteFormData.Level} onChange={handleChange}className='rounded-xl' />
+              <input type="text" name="Duration" placeholder="Duration" value={remoteFormData.Duration} onChange={handleChange} className='rounded-xl' />
+              <input type="text" name="Project_Budget" placeholder="Project Budget" value={remoteFormData.Project_Budget} onChange={handleChange}className='rounded-xl' />
+              <input type="text" name="Link" placeholder="Link" value={remoteFormData.Link} onChange={handleChange} className='rounded-xl' />
               <button type="submit" className='rounded-xl w-full bg-[--three-color] text-white p-2' onClick={handleSubmit}>Update</button>
               <button type="button" className='rounded-xl w-full bg-[--three-color] text-white p-2' onClick={() => {
                 setShowRemoteUpdateForm(false);
-                setFormData({}); // Reset form data
+                setRemoteFormData({}); // Reset form data
               }}>Reset</button>
             </form>
           </div>
@@ -268,4 +298,3 @@ function ShowLeads() {
 }
 
 export default ShowLeads;
-
