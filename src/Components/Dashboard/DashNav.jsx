@@ -42,7 +42,7 @@
         <nav className="bg-white w-full shadow-lg lg:px-20 md:px-7 px-4 font-family border-b ">
           <div className=" flex flex-wrap items-center justify-between mx-auto">
             <div className="z-40">
-            <img className="w-36 lg:w-48 md:w-36 z-40 " src={Logo} alt="nishant" />
+            <img className="w-44 lg:w-48 md:w-44 z-40 " src={Logo} alt="nishant" />
             </div>
             <div className="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
             <NavLink 
@@ -75,7 +75,7 @@
             </div>
             <div
               className={`z-[-1] lg:-z-0 nav-menu lg:flex lg:pb-0 lg:py-0 md:py-7 py-7 lg:items-center text-base absolute  lg:static right-0 w-full lg:w-auto md:pl-0 transition-all duration-500 ease-in 
-            ${isOpen ? " top-[-200px]" : "top-[20px]"}` }
+            ${isOpen ? " top-[-220px]" : "top-[29px]"}` }
               id="navbar-sticky"
             >
               <ul className="gap-4 z-[-1] flex flex-col nav-menu p-4 lg::p-0 mt-4 lg:mb-0 md:mb-4 mb-4 font-medium rounded-lg lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">

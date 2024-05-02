@@ -220,7 +220,7 @@ function LoginDemo({ role }) {
       } else if (response.data.status === true) {
         // Handle successful signup
         console.log("Signup successful", response.data);
-        notifySuccess("Signup successful");
+        // notifySuccess("Signup successful");
         window.location.href = response.data.url;
         // navigate("/register");
         // window.location.href = "/register";

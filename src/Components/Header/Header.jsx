@@ -75,7 +75,7 @@ function Header() {
           </div>
           <div
             className={`z-[-1] nav-menu lg:flex lg:pb-0 lg:py-0 md:py-7 py-7 lg:items-center text-base absolute  lg:static lg:z-0 right-0 w-full lg:w-auto md:pl-0 transition-all duration-500 ease-in 
-          ${isOpen ? "top-[-200px]" : "top-[29px]"}` }
+          ${isOpen ? "top-[-220px]" : "top-[29px]"}` }
             id="navbar-sticky"
           >
             <ul className="gap-4 flex flex-col nav-menu p-4 lg::p-0 mt-4 lg:mb-0 md:mb-4 mb-4 font-medium rounded-lg lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
