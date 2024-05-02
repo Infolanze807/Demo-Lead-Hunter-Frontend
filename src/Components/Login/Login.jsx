@@ -190,11 +190,11 @@ function LoginDemo({ role }) {
   
       // Determine the amount based on paymentStatus
       switch (paymentStatus) {
-        case "99":
-          amount = 99;
+        case "1":
+          amount = 1;
           break;
-        case "999":
-          amount = 999;
+        case "2":
+          amount = 2;
           break;
         default:
           setPaymentStatusError(true);
@@ -467,8 +467,8 @@ function LoginDemo({ role }) {
                             <div className="pt-2">
                               <input
                                 type="checkbox"
-                                checked={paymentStatus === "99"}
-                                onChange={() => setPaymentStatus("99")}
+                                checked={paymentStatus === "1"}
+                                onChange={() => setPaymentStatus("1")}
                               />
                             </div>
                           </div>
@@ -479,8 +479,8 @@ function LoginDemo({ role }) {
                             <div className="pt-2">
                               <input
                                 type="checkbox"
-                                checked={paymentStatus === "999"}
-                                onChange={() => setPaymentStatus("999")}
+                                checked={paymentStatus === "2"}
+                                onChange={() => setPaymentStatus("2")}
                               />
                             </div>
                           </div>
